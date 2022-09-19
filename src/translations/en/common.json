@@ -1,0 +1,14 @@
+{
+    "header": {
+        "title": "Welcome",
+        "date": "13. February 2024"
+    },
+    "navBar":{
+        "home": "home",
+        "couple": "the couple",
+        "wedding": "the wedding",
+        "rsvp": "rsvp",
+        "english": "en",
+        "norwegian": "no"
+    }
+}

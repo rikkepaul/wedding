@@ -1,15 +1,27 @@
 import Toolbar from "@mui/material/Toolbar";
-import { Button, Grid, IconButton, styled, Typography } from "@mui/material";
+import { Paper, Button, Grid, IconButton, styled, Typography } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import React from "react";
-import image1 from "./../images/image1.jpg";
+import { useState } from "react";
+import {useTranslation} from "react-i18next";
 
 export const TopBanner = () => {
+  
+  const {t, i18n} = useTranslation('common');
+  const [isEnglish, setEnglish] = useState(false)
+  const handleLanguageChange = () => {
+    if (isEnglish) {
+      i18n.changeLanguage('no');
+      setEnglish(false);
+    } else{
+      i18n.changeLanguage('en');
+      setEnglish(true);
+    }
+  };
   return (
     <>
       <StyledPaperContainer>
-        <StyledHeader>Welcome</StyledHeader>
-        <StyledDescription>13. February 2024</StyledDescription>
+        <StyledHeader>{t("header.title")}</StyledHeader>
+        <StyledDescription>{t("header.date")}</StyledDescription>
       </StyledPaperContainer>
       <StickyTopNav>
         <Toolbar>
@@ -17,10 +29,12 @@ export const TopBanner = () => {
             <FavoriteBorderIcon />
           </IconButton>
           <Grid container justifyContent={"end"}>
-            <Button href={"/"}>Home</Button>
-            <Button href={"/couple"}>The Couple</Button>
-            <Button href={"/wedding"}>The Wedding</Button>
-            <Button>RSVP</Button>
+            <Button href={"/"}>{t("navBar.home")}</Button>
+            <Button href={"/couple"}>{t("navBar.couple")}</Button>
+            <Button href={"/wedding"}>{t("navBar.wedding")}</Button>
+            <Button href={"/wedding"}>{t("navBar.rsvp")}</Button>
+            <Button onClick={handleLanguageChange}>{isEnglish ? t("navBar.norwegian") : t("navBar.english")}</Button>
+
           </Grid>
         </Toolbar>
       </StickyTopNav>
@@ -44,8 +58,8 @@ const StyledDescription = styled(Typography)`
   font-family: Apple Chancery;
 `;
 
-const StyledPaperContainer = styled(Grid)`
-  background-image: url(${image1});
+const StyledPaperContainer = styled(Paper)`
+  background-image: url("/images/image1.jpg");
   background-size: cover;
   background-position: center;
   height: 300px;

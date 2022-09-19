@@ -1,0 +1,14 @@
+{
+    "header": {
+        "title": "Velkommen",
+        "date": "13. February 2024"
+    },
+    "navBar":{
+        "home": "hjem",
+        "couple": "paret",
+        "wedding": "bryllupet",
+        "rsvp": "rsvp",
+        "english": "en",
+        "norwegian": "no"
+    }
+}
