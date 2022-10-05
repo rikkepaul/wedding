@@ -16,6 +16,7 @@
     "@types/react": "^18.0.20",
     "@types/react-dom": "^18.0.6",
     "eslint": "8.22.0",
+    "firebase": "^9.10.0",
     "i18next": "^21.9.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -50,6 +51,6 @@
     ]
   },
   "devDependencies": {
-    "prettier": "2.7.1"
+    "prettier": "^2.7.1"
   }
 }
