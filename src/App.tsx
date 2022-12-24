@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import { Home } from './pages/home';
-import { Wedding } from './pages/wedding';
+import Home from './pages/index';
+import Wedding from './pages/wedding';
 import { Couple } from './pages/couple';
 import { TopBanner } from './components/TopBanner';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import i18next from 'i18next';
+import Rsvp from './pages/rsvp';
 
 function App() {
     return (
@@ -20,6 +20,9 @@ function App() {
                 </Routes>
                 <Routes>
                     <Route path="/couple" element={<Couple />} />
+                </Routes>
+                <Routes>
+                    <Route path="/rsvp" element={<Rsvp />} />
                 </Routes>
             </div>
         </BrowserRouter>

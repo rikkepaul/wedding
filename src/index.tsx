@@ -3,37 +3,22 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import firebase from '../utils/firebase';
-import { I18nextProvider } from 'react-i18next';
-import i18next from 'i18next';
-import common_no from './translations/no/common.json';
-import common_en from './translations/en/common.json';
+import { ThemeProvider } from '@mui/system';
+import { globalTheme } from './theme';
 
-i18next.init({
-    interpolation: { escapeValue: false }, // React already does escaping
-    lng: 'no', // language to use
-    resources: {
-        en: {
-            common: common_en // 'common' is our custom namespace
-        },
-        no: {
-            common: common_no
-        }
-    }
-});
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
 
 root.render(
     <React.StrictMode>
-        <I18nextProvider i18n={i18next}>
+        <ThemeProvider theme={globalTheme}>
             <link
                 href="https://fonts.cdnfonts.com/css/apple-chancery"
                 rel="stylesheet"
             />
             <App />
-        </I18nextProvider>
+        </ThemeProvider>
     </React.StrictMode>
 );
 
