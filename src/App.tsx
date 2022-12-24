@@ -1,4 +1,3 @@
-import React from 'react';
 import './App.css';
 import Home from './pages/index';
 import Wedding from './pages/wedding';

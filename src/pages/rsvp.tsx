@@ -6,16 +6,36 @@ import {
     Stack,
     FormControlLabel,
     Checkbox,
-    Button
+    Button,
+    useMediaQuery,
+    useTheme
 } from '@mui/material';
 import { useState } from 'react';
+import { collection, addDoc } from 'firebase/firestore';
+import { db } from '../firebase';
 
 export const Rsvp = () => {
-    const handleSubmit = (e: any) => {
-        console.log('Submit: ', formData);
+    const theme = useTheme();
+    const isSmallDevice = useMediaQuery(theme.breakpoints.down('md'));
 
+    const handleSubmit = async (e: any) => {
         e.preventDefault();
         validateInput();
+        if (Object.values(formData).every(({ error }) => error === '')) {
+            try {
+                console.log('here');
+
+                const docRef = await addDoc(collection(db, 'rsvp'), {
+                    firstName: formData.firstName,
+                    lastName: formData.lastName,
+                    plusOne: formData.plusOne,
+                    allergies: formData.allergies
+                });
+                console.log('Document written with ID: ', docRef.id);
+            } catch (e) {
+                console.error('Error adding document: ', e);
+            }
+        }
     };
     const [formData, setFormData] = useState({
         firstName: {
@@ -27,10 +47,12 @@ export const Rsvp = () => {
             error: ''
         },
         plusOne: {
-            value: false
+            value: false,
+            error: ''
         },
         allergies: {
-            value: ''
+            value: '',
+            error: ''
         }
     });
 
@@ -87,19 +109,17 @@ export const Rsvp = () => {
                 container
                 direction="column"
                 sx={{
-                    height: '300px',
                     alignItems: 'center',
                     justifyContent: 'center',
                     backgroundColor: 'rgba(255,255,255,0.85)',
-                    borderRadius: '10px'
+                    borderRadius: '10px',
+                    padding: '24px'
                 }}
             >
-                <Typography variant="h2">
-                    La oss få vite om du kommer eller ikke
-                </Typography>
+                <Typography variant="h2">Blir du med?</Typography>
                 <form>
                     <Stack spacing={1}>
-                        <Stack direction={'row'}>
+                        <Stack direction={isSmallDevice ? 'column' : 'row'}>
                             <TextField
                                 name={'firstName'}
                                 value={formData.firstName.value}
@@ -132,7 +152,11 @@ export const Rsvp = () => {
                                     onChange={handleInputChange}
                                 />
                             }
-                            label="Kryss av om du har med følge"
+                            label={
+                                <Typography variant="body2">
+                                    Har du med følge?
+                                </Typography>
+                            }
                             labelPlacement="end"
                         />
                         <TextField
