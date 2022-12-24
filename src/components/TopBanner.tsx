@@ -41,7 +41,7 @@ export const TopBanner = () => {
                     </IconButton>
                     {isSmallDevice ? (
                         <Grid container justifyContent={'end'}>
-                            <IconButton
+                            <Button
                                 aria-label="more"
                                 id="long-button"
                                 aria-controls={open ? 'long-menu' : undefined}
@@ -49,8 +49,8 @@ export const TopBanner = () => {
                                 aria-haspopup="true"
                                 onClick={handleClick}
                             >
-                                <MoreVertIcon />
-                            </IconButton>
+                                Meny
+                            </Button>
                             <Menu
                                 id="basic-menu"
                                 anchorEl={anchorEl}
